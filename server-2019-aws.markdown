@@ -1,12 +1,16 @@
 Windows Server 2019 Base is available on AWS as an AMI, Instances are pretty cheap. 
 I set up a t3a.medium instance with the Windows Server 2019 Base AMI and it's less than 6 cents/hour.
 
-* Create new VPC with one public subnet and launch instances within it.
+* Create new VPC 
+* Create Internet Gateway and attach to VPC
+* Create subnet in VPC
+* Update route table, add 0.0.0.0/0 to the Internet Gateway
+* Launch instance in VPC as follows
 * Do not let AWS auto-assign a public IP address.
 * Create a security group, allow RDP inbound from your IP. 
-* Assign a private IP for each instance above .4. For example 10.52.0.10 for first instance.
+* Create an Internet Gateway and add it to the route table.
 * Create an Elastic IP and associate it with the instance. That way, the public IP/AWS-assigned hostname will not change. 
-* You will need a public FQDN for this machine and it will be the AD domain. You can use the AWS-assigned FQDN for the EIP, or you can use your own domain name. 
+* You will need a public FQDN for this machine and it will be the AD domain. You can use the AWS-assigned FQDN for the EIP, or you can use your own domain name (recommended). 
 * Decrypt the administrator password, download the RDP script, login, change the password if you wish.
 
 Other configuration
